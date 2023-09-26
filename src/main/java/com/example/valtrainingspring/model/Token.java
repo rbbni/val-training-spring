@@ -1,28 +1,30 @@
-package model;
-
-import java.util.Date;
+package com.example.valtrainingspring.model;
 
 import jakarta.persistence.*;
+
+import java.util.Date;
 
 @Entity
 @Table(name = "tokens")
 public class Token {
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(nullable = false)
+
+
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
-	
+
 	@Column(nullable = false)
 	private String tokenValue;
-	
+
 	@Column(nullable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date expirationDate;
+
+	public Token() {
+	}
 
 	public Long getId() {
 		return id;
@@ -55,5 +57,4 @@ public class Token {
 	public void setExpirationDate(Date expirationDate) {
 		this.expirationDate = expirationDate;
 	}
-	
 }

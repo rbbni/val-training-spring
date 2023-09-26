@@ -1,23 +1,23 @@
-package model;
+package com.example.valtrainingspring.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-
 @Entity
 @Table(name = "users")
-public class User implements Serializable{
+public class User implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
-	private static final long serialVersionUID = -7351729135012380019L;
+	private static final long serialVersionUID = 1264424881861154963L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,66 +25,76 @@ public class User implements Serializable{
 
 	@NotBlank
 	private String code;
-	
-	@NotBlank
-    private String name;
 
 	@NotBlank
-    private String surname;
+	private String name;
+
+	@NotBlank
+	private String surname;
 
 	@Column(nullable = false, unique = true)
-    private String mail;
+	private String mail;
 
 	@NotBlank
-    private String jobLevel;
+	private String jobLevel;
 
-    @NotBlank
-    private boolean evalutator;
+	@NotBlank
+	private boolean evalutator;
 
-    @NotBlank
-    private boolean flagDelete;
+	@NotBlank
+	private boolean flagDelete;
 
-    private boolean active;
+	private boolean active;
 
-    @NotBlank
-    private String role;
+	@NotBlank
+	private String role;
 
-    @Column(updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date lastAccessDate;
+	@Column(updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@LastModifiedDate
+	private Date lastAccessDate;
 
-    @Column(updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date registrationDate;
+	@Column(updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreatedDate
+	private Date registrationDate;
 
-    private String managerName;
+	private String managerName;
 
-    private String managerSurname;
+	private String managerSurname;
 
-    private String companySog;
+	private String companySog;
 
-    private String job;
+	private String job;
 
-    private String orgUnit;
+	private String orgUnit;
 
-    private String task;
+	private String task;
 
-    private String jobFamilies;
+	private String jobFamilies;
 
-    private String subFamilies;
+	private String subFamilies;
 
-    private String standardJob;
+	private String standardJob;
 
-    private String competenceField;
+	private String competenceField;
 
-    private String password;
-    
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Evaluation> evaluations;
-    
-    public Long getId() {
+	private String password;
+
+	@OneToOne(mappedBy = "user")
+	private Salt salt;
+
+	@OneToOne(mappedBy = "user")
+	private Token token;
+
+	@OneToOne
+	@JoinColumn(name = "competence_field_id")
+	private CompetenceField competenceFieldId;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<Evaluation> evaluations;
+
+	public Long getId() {
 		return id;
 	}
 
@@ -268,6 +278,30 @@ public class User implements Serializable{
 		this.password = password;
 	}
 
+	public Salt getSalt() {
+		return salt;
+	}
+
+	public void setSalt(Salt salt) {
+		this.salt = salt;
+	}
+
+	public Token getToken() {
+		return token;
+	}
+
+	public void setToken(Token token) {
+		this.token = token;
+	}
+
+	public CompetenceField getCompetenceFieldId() {
+		return competenceFieldId;
+	}
+
+	public void setCompetenceFieldId(CompetenceField competenceFieldId) {
+		this.competenceFieldId = competenceFieldId;
+	}
+
 	public List<Evaluation> getEvaluations() {
 		return evaluations;
 	}
@@ -275,4 +309,9 @@ public class User implements Serializable{
 	public void setEvaluations(List<Evaluation> evaluations) {
 		this.evaluations = evaluations;
 	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }

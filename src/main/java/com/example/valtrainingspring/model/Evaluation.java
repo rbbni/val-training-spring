@@ -1,32 +1,34 @@
-package model;
+package com.example.valtrainingspring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "evaluations")
 public class Evaluation {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@OneToOne
 	@JoinColumn(name = "competence_field_id")
 	private CompetenceField competenceField;
-	
+
 	@OneToOne
 	@JoinColumn(name = "outcome_id")
 	private Outcome outcome;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
 	private User user;
-	
+
 	@Column
 	private boolean flagDelete;
+
+	public Evaluation() {
+	}
 
 	public Long getId() {
 		return id;
@@ -67,5 +69,4 @@ public class Evaluation {
 	public void setFlagDelete(boolean flagDelete) {
 		this.flagDelete = flagDelete;
 	}
-	
 }

@@ -1,4 +1,4 @@
-package model;
+package com.example.valtrainingspring.model;
 
 import jakarta.persistence.*;
 
@@ -8,25 +8,30 @@ public class Outcome {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToOne(mappedBy = "outcome")
 	private Long id;
 
 	private Long percentageWeigth;
-	
+
 	private String autoEvaluation;
-	
+
 	private String othersEvaluation;
-	
+
 	private String expectedEvaluation;
-	
+
 	private String possibModExpEvaluation;
-	
+
 	private String outcomeDescription;
-	
+
 	private Long returnCode;
-	
+
+	@OneToOne(mappedBy = "outcome")
+	private Evaluation evaluation;
+
 	@Column(nullable = false)
 	private boolean flgDelete;
+
+	public Outcome() {
+	}
 
 	public Long getId() {
 		return id;
@@ -99,7 +104,4 @@ public class Outcome {
 	public void setFlgDelete(boolean flgDelete) {
 		this.flgDelete = flgDelete;
 	}
-
-	
-	
 }
