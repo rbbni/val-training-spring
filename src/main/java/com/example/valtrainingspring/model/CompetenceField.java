@@ -1,4 +1,4 @@
-package model;
+package com.example.valtrainingspring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -6,22 +6,34 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "competence_field")
 public class CompetenceField {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@OneToOne(mappedBy = "competenceField")
 	private Long id;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category")
 	@JsonIgnore
 	private Category category;
 	private String title;
-	private String descr;	
+	private String descr;
 	private String ratingScale;
-	
-	@Column(nullable=false)
+
+	@OneToOne(mappedBy = "competenceField")
+	private Evaluation evaluation;
+
+	@Column(nullable = false)
 	private boolean flgDelete;
+
+	public Evaluation getEvaluation() {
+		return evaluation;
+	}
+
+	public void setEvaluation(Evaluation evaluation) {
+		this.evaluation = evaluation;
+	}
+
+	public CompetenceField() {
+	}
 
 	public Long getId() {
 		return id;
@@ -70,7 +82,4 @@ public class CompetenceField {
 	public void setFlgDelete(boolean flgDelete) {
 		this.flgDelete = flgDelete;
 	}
-	
-	
-	
 }

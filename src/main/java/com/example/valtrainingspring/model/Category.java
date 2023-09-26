@@ -1,12 +1,18 @@
-package model;
+package com.example.valtrainingspring.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "authors")
-public class Category {
+@Table(name = "category")
+public class Category implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6111377544303177037L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
