@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Evaluation {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne

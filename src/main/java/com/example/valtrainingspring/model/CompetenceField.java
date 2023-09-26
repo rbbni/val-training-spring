@@ -6,71 +6,72 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "competence_field")
 public class CompetenceField {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category")
-    @JsonIgnore
-    private Category category;
-    private String title;
-    private String descr;
-    private String ratingScale;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "category")
+	@JsonIgnore
+	private Category category;
+	private String title;
+	private String descr;
+	private String ratingScale;
 
-    @Column(nullable=false)
-    private boolean flgDelete;
+	@OneToOne(mappedBy = "competenceField")
+	private Evaluation evaluation;
 
-    public CompetenceField() {
-    }
+	@Column(nullable = false)
+	private boolean flgDelete;
 
-    public Long getId() {
-        return id;
-    }
+	public CompetenceField() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Category getCategory() {
-        return category;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+	public Category getCategory() {
+		return category;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public String getDescr() {
-        return descr;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setDescr(String descr) {
-        this.descr = descr;
-    }
+	public String getDescr() {
+		return descr;
+	}
 
-    public String getRatingScale() {
-        return ratingScale;
-    }
+	public void setDescr(String descr) {
+		this.descr = descr;
+	}
 
-    public void setRatingScale(String ratingScale) {
-        this.ratingScale = ratingScale;
-    }
+	public String getRatingScale() {
+		return ratingScale;
+	}
 
+	public void setRatingScale(String ratingScale) {
+		this.ratingScale = ratingScale;
+	}
 
+	public boolean isFlgDelete() {
+		return flgDelete;
+	}
 
-    public boolean isFlgDelete() {
-        return flgDelete;
-    }
-
-    public void setFlgDelete(boolean flgDelete) {
-        this.flgDelete = flgDelete;
-    }
+	public void setFlgDelete(boolean flgDelete) {
+		this.flgDelete = flgDelete;
+	}
 }
