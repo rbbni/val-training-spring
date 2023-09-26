@@ -1,8 +1,8 @@
-model\Category.class
-model\CompetenceField.class
 model\Evaluation.class
+model\User.class
+model\CompetenceField.class
 com\example\valtrainingspring\ValTrainingSpringApplication.class
+model\Outcome.class
+model\Category.class
 model\Salt.class
 model\Token.class
-model\User.class
-model\Outcome.class
