@@ -86,10 +86,6 @@ public class User implements Serializable {
 	@OneToOne(mappedBy = "user")
 	private Token token;
 
-	@OneToOne
-	@JoinColumn(name = "competence_field_id")
-	private CompetenceField competenceFieldId;
-
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Evaluation> evaluations;
 
@@ -291,14 +287,6 @@ public class User implements Serializable {
 
 	public void setToken(Token token) {
 		this.token = token;
-	}
-
-	public CompetenceField getCompetenceFieldId() {
-		return competenceFieldId;
-	}
-
-	public void setCompetenceFieldId(CompetenceField competenceFieldId) {
-		this.competenceFieldId = competenceFieldId;
 	}
 
 	public List<Evaluation> getEvaluations() {

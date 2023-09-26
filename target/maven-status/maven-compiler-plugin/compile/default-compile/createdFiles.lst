@@ -1,3 +1,6 @@
+com\example\valtrainingspring\repository\custom\CustomUserRepositoryImpl.class
+com\example\valtrainingspring\service\UserService.class
+com\example\valtrainingspring\repository\custom\CustomUserRepository.class
 com\example\valtrainingspring\repository\CategoryRepository.class
 com\example\valtrainingspring\model\Outcome.class
 com\example\valtrainingspring\repository\EvaluationRepository.class
@@ -9,6 +12,8 @@ com\example\valtrainingspring\model\Evaluation.class
 com\example\valtrainingspring\repository\OutcomeRepository.class
 com\example\valtrainingspring\repository\TokenRepository.class
 com\example\valtrainingspring\model\Salt.class
+com\example\valtrainingspring\controller\UserController.class
 com\example\valtrainingspring\model\User.class
 com\example\valtrainingspring\repository\SaltRepository.class
 com\example\valtrainingspring\model\Token.class
+com\example\valtrainingspring\repository\UserRepository.class
