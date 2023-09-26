@@ -9,6 +9,10 @@ com\example\valtrainingspring\model\Evaluation.class
 com\example\valtrainingspring\repository\OutcomeRepository.class
 com\example\valtrainingspring\repository\TokenRepository.class
 com\example\valtrainingspring\model\Salt.class
+com\example\valtrainingspring\controller\UserController.class
+com\example\valtrainingspring\repository\CustomUserRepositoryImpl.class
 com\example\valtrainingspring\model\User.class
 com\example\valtrainingspring\repository\SaltRepository.class
+com\example\valtrainingspring\repository\CustomUserRepository.class
 com\example\valtrainingspring\model\Token.class
+com\example\valtrainingspring\repository\UserRepository.class

@@ -11,7 +11,7 @@ public class CompetenceField {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category")
+	@JoinColumn(name = "category_id")
 	@JsonIgnore
 	private Category category;
 	private String title;
