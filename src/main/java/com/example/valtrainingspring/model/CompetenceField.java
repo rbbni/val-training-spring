@@ -24,6 +24,14 @@ public class CompetenceField {
 	@Column(nullable = false)
 	private boolean flgDelete;
 
+	public Evaluation getEvaluation() {
+		return evaluation;
+	}
+
+	public void setEvaluation(Evaluation evaluation) {
+		this.evaluation = evaluation;
+	}
+
 	public CompetenceField() {
 	}
 

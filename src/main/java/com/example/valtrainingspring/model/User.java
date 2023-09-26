@@ -93,25 +93,6 @@ public class User implements Serializable {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Evaluation> evaluations;
 
-	public List<Evaluation> getEvaluations() {
-		return evaluations;
-	}
-
-	public void setEvaluations(List<Evaluation> evaluations) {
-		this.evaluations = evaluations;
-	}
-
-	public User() {
-	}
-
-	public CompetenceField getCompetenceFieldId() {
-		return competenceFieldId;
-	}
-
-	public void setCompetenceFieldId(CompetenceField competenceFieldId) {
-		this.competenceFieldId = competenceFieldId;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -295,4 +276,41 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public Salt getSalt() {
+		return salt;
+	}
+
+	public void setSalt(Salt salt) {
+		this.salt = salt;
+	}
+
+	public Token getToken() {
+		return token;
+	}
+
+	public void setToken(Token token) {
+		this.token = token;
+	}
+
+	public CompetenceField getCompetenceFieldId() {
+		return competenceFieldId;
+	}
+
+	public void setCompetenceFieldId(CompetenceField competenceFieldId) {
+		this.competenceFieldId = competenceFieldId;
+	}
+
+	public List<Evaluation> getEvaluations() {
+		return evaluations;
+	}
+
+	public void setEvaluations(List<Evaluation> evaluations) {
+		this.evaluations = evaluations;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 }
