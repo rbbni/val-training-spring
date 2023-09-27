@@ -1,5 +1,7 @@
 package com.example.valtrainingspring.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,5 +17,10 @@ public class UserController {
 	@GetMapping("/mail")
 	public User getByMail(@RequestParam(value = "mail")  String mail){
 		return userService.findByMail(mail);
+	}
+	
+	@GetMapping("/ordered")
+	public List<User> getMailByJobLevelIfEvaluator(@RequestParam(value = "jobLevel") String jobLevel){
+		return userService.findMailByJobLevelIfEvaluator(jobLevel);
 	}
 }
