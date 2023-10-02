@@ -21,9 +21,6 @@ public class UserService {
 		this.userRepo = userRepo;
 	}
 
-	public User getByMail(String mail) {
-		return userRepo.findByMailCustom(mail);
-	}
 
 	public User getById(Long id) {
 		Optional<User> u = userRepo.findById(id);

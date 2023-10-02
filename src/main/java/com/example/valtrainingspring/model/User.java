@@ -5,9 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -37,8 +40,9 @@ public class User implements Serializable {
 	@NotBlank
 	private String jobLevel;
 
-	@NotBlank
-	private boolean evalutator;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
 
 	@NotBlank
 	private boolean flagDelete;
@@ -56,6 +60,7 @@ public class User implements Serializable {
 	@Column(updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreatedDate
+
 	private Date registrationDate;
 
 	private String managerName;
@@ -88,6 +93,14 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Evaluation> evaluations;
+
+//	public User(@NotBlank String name, @NotBlank String surname, String mail, String password) {
+//		super();
+//		this.name = name;
+//		this.surname = surname;
+//		this.mail = mail;
+//		this.password = password;
+//	}
 
 	public Long getId() {
 		return id;
@@ -137,12 +150,12 @@ public class User implements Serializable {
 		this.jobLevel = jobLevel;
 	}
 
-	public boolean isEvalutator() {
-		return evalutator;
+	public Set<Role> getRoles() {
+		return roles;
 	}
 
-	public void setEvalutator(boolean evalutator) {
-		this.evalutator = evalutator;
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 	public boolean isFlagDelete() {
@@ -295,10 +308,6 @@ public class User implements Serializable {
 
 	public void setEvaluations(List<Evaluation> evaluations) {
 		this.evaluations = evaluations;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }
