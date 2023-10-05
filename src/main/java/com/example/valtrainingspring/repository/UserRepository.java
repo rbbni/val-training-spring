@@ -9,10 +9,12 @@ import com.example.valtrainingspring.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-	Optional<User> findByMail(String mail);
+	Optional<User> findByEmail(String mail);
 
-	Boolean existsByUsername(String username);
 
 	Boolean existsByEmail(String mail);
+
+
+	
 
 }

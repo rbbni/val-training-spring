@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
@@ -25,7 +24,6 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank
 	private String code;
 
 	@NotBlank
@@ -35,9 +33,8 @@ public class User implements Serializable {
 	private String surname;
 
 	@Column(nullable = false, unique = true)
-	private String mail;
+	private String email;
 
-	@NotBlank
 	private String jobLevel;
 
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -45,12 +42,10 @@ public class User implements Serializable {
 	private Set<Role> roles = new HashSet<>();
 
 	@NotBlank
+	@Column(columnDefinition = "tinyint(1) default 0")
 	private boolean flagDelete;
-
+	@Column(columnDefinition = "tinyint(1) default 1")
 	private boolean active;
-
-	@NotBlank
-	private String role;
 
 	@Column(updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -82,25 +77,23 @@ public class User implements Serializable {
 	private String standardJob;
 
 	private String competenceField;
-
+	@NotBlank
 	private String password;
-
-	@OneToOne(mappedBy = "user")
-	private Salt salt;
-
-	@OneToOne(mappedBy = "user")
-	private Token token;
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Evaluation> evaluations;
 
-//	public User(@NotBlank String name, @NotBlank String surname, String mail, String password) {
-//		super();
-//		this.name = name;
-//		this.surname = surname;
-//		this.mail = mail;
-//		this.password = password;
-//	}
+	public User() {
+		super();
+	}
+
+	public User(@NotBlank String name, @NotBlank String surname, String email, String password) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.email = email;
+		this.password = password;
+	}
 
 	public Long getId() {
 		return id;
@@ -135,11 +128,11 @@ public class User implements Serializable {
 	}
 
 	public String getMail() {
-		return mail;
+		return email;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setMail(String email) {
+		this.email = email;
 	}
 
 	public String getJobLevel() {
@@ -172,14 +165,6 @@ public class User implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 
 	public Date getLastAccessDate() {
@@ -284,22 +269,6 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public Salt getSalt() {
-		return salt;
-	}
-
-	public void setSalt(Salt salt) {
-		this.salt = salt;
-	}
-
-	public Token getToken() {
-		return token;
-	}
-
-	public void setToken(Token token) {
-		this.token = token;
 	}
 
 	public List<Evaluation> getEvaluations() {

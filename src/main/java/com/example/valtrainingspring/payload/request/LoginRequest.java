@@ -4,19 +4,12 @@ import jakarta.validation.constraints.NotBlank;
 
 public class LoginRequest {
 	@NotBlank
-	private String mail;
+	private String username;
 
 	@NotBlank
 	private String password;
 
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
-
+	
 	public String getPassword() {
 		return password;
 	}
@@ -25,8 +18,12 @@ public class LoginRequest {
 		this.password = password;
 	}
 
-	public Object getUsername() {
-		// TODO Auto-generated method stub
-		return mail;
+	public String getUsername() {
+		return username;
 	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
 }

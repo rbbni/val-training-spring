@@ -10,26 +10,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/test")
 public class TestController {
-  @GetMapping("/all")
-  public String allAccess() {
-    return "Public Content.";
-  }
+	@GetMapping("/all")
+	public String allAccess() {
+		return "CONTENUTO PUBBLICO(NO PERMESSI)";
+	}
 
-  @GetMapping("/user")
-  @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-  public String userAccess() {
-    return "User Content.";
-  }
+	@GetMapping("/valutato")
+	@PreAuthorize("hasRole('VALUTATO')")
+	public String moderatorAccess() {
+		return "CONTENUTO VISIBILE SOLO A CHI E' VALUTATO";
+	}
 
-  @GetMapping("/mod")
-  @PreAuthorize("hasRole('MODERATOR')")
-  public String moderatorAccess() {
-    return "Moderator Board.";
-  }
-
-  @GetMapping("/admin")
-  @PreAuthorize("hasRole('ADMIN')")
-  public String adminAccess() {
-    return "Admin Board.";
-  }
+	@GetMapping("/valutatore")
+	@PreAuthorize("hasRole('VALUTATORE')")
+	public String adminAccess() {
+		return "CONTENUTO VISIBILE SOLO DA CHI VALUTA";
+	}
 }

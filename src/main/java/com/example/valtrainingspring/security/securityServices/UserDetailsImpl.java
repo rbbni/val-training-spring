@@ -15,13 +15,17 @@ public class UserDetailsImpl implements UserDetails {
 
 	private Long id;
 	private String username;
+	private String name;
+	private String surname;
 	private String password;
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public UserDetailsImpl(Long id, String username, String password,
+	public UserDetailsImpl(Long id, String username, String name, String surname, String password,
 			Collection<? extends GrantedAuthority> authorities) {
 		this.id = id;
 		this.username = username;
+		this.name = name;
+		this.surname = surname;
 		this.password = password;
 		this.authorities = authorities;
 	}
@@ -29,7 +33,8 @@ public class UserDetailsImpl implements UserDetails {
 	public static UserDetailsImpl build(User user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name())).collect(Collectors.toList());
-		return new UserDetailsImpl(user.getId(), user.getMail(), user.getPassword(), authorities);
+		return new UserDetailsImpl(user.getId(), user.getMail(), user.getName(), user.getSurname(), user.getPassword(),
+				authorities);
 	}
 
 	@Override
@@ -41,8 +46,22 @@ public class UserDetailsImpl implements UserDetails {
 		return id;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	@Override
 	public String getPassword() {
 		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
 	}
 
 	@Override
@@ -75,9 +94,4 @@ public class UserDetailsImpl implements UserDetails {
 		return Objects.equals(id, user.id);
 	}
 
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return username;
-	}
 }
